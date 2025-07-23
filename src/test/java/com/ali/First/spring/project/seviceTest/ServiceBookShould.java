@@ -52,14 +52,11 @@ public class ServiceBookShould {
 
     @Test
     void find_books_by_category() {
-        Category programmingLanguage = new Category("Programming language");
-        programmingLanguage.setId(2L);
         List<Book> expectedBooks = List.of(new Book("Java", "Ali", 2000),
                 new Book("Python", "Mohammad", 1000));
 
-        when(categoryRepository.findByNameIgnoreCase("programming language")).thenReturn(Optional.of(programmingLanguage));
-        when(bookRepository.findByCategoryId(programmingLanguage.getId())).thenReturn(expectedBooks);
-        final List<Book> booksByCategory = service.getAllBooksByCategory("programming language");
+        when(bookRepository.findBooksByCategory("Programming language")).thenReturn(Optional.of(expectedBooks));
+        final List<Book> booksByCategory = service.getAllBooksByCategory("Programming language");
 
         Assertions.assertThat(booksByCategory).isEqualTo(expectedBooks);
     }

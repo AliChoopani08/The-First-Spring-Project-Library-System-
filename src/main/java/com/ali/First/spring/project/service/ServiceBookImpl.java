@@ -26,9 +26,8 @@ public class ServiceBookImpl implements BookServiceInterface{
 
 
     public List<Book> getAllBooksByCategory(String categoryKind) {
-        final Category category = categoryRepository.findByNameIgnoreCase(categoryKind)
+       return bookRepository.findBooksByCategory(categoryKind)
                 .orElseThrow(() -> new NotFoundCategory("Not found this category: " + categoryKind));
-        return bookRepository.findByCategoryId(category.getId());
     }
 
     @Override
